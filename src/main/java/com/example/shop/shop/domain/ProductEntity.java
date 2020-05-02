@@ -3,12 +3,11 @@ package com.example.shop.shop.domain;
 import com.example.shop.shop.dto.Product;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
-@Entity(name = "products")
+@Entity
+@Table(name = "products")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -19,6 +18,8 @@ public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToMany(mappedBy = "products")
+    private List<OrderEntity> orders;
     private String name;
     private String description;
     private Double price;
