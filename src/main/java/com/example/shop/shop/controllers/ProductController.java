@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
     @Autowired
     private ProductService service;
@@ -21,12 +22,11 @@ public class ProductController {
 
     @GetMapping({"/product", "product/list"})
     public List<Product> list() {
-        System.out.println("Conroller");
         return this.service.list();
     }
 
     @GetMapping("/product/{id}")
-    public Optional<Product> getProduct(@RequestParam(value = "id") Long id) {
+    public Optional<Product> getProduct(@PathVariable(value = "id") Long id) {
         return this.service.getById(id);
     }
 
