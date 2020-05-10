@@ -29,6 +29,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> getById(Long id) {
+
+        System.out.println(id);
         return repository.findById(id).map(ProductEntity::toDto);
     }
 
